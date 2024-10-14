@@ -6,10 +6,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * the service for team
+ */
 @Service
 @RequiredArgsConstructor
 public class TeamService {
-
-    private final TeamRepository teamRepository;
 
 }
