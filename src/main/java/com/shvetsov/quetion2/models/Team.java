@@ -6,6 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+/**
+ * model Team
+ */
 @Entity
 @Getter
 @Setter
@@ -13,14 +17,24 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "team")
 public class Team {
+    /**
+     * field id
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
+    /**
+     * field name
+     */
     @Column(name = "name")
     private String name;
 
-    public Team(String nameTeam) {
-        this.name = nameTeam;
+    /**
+     * constructor for Team
+     * @param name
+     */
+    public Team(String name) {
+        this.name = name;
     }
 }

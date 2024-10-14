@@ -7,8 +7,22 @@ import org.springframework.stereotype.Repository;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Repository for {@link Match}
+ */
 @Repository
 public interface MatchRepository extends JpaRepository<Match, Long> {
+    /**
+     * Method for getting the matches by id
+     * @param id the date of the match
+     * @return a list of matches
+     */
     Match findAllById(Long id);
-    List<Match> findByDate(Date date);
+
+    /**
+     * Method for getting the matches by date
+     * @param date
+     * @return
+     */
+    List<Match> findByDateMatch(Date date);
 }
