@@ -12,5 +12,5 @@ public class TeamDTO {
     /**
      * field teamName
      */
-    private String teamName;
+    private String name;
 }

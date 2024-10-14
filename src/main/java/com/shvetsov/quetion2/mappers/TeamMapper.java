@@ -16,6 +16,5 @@ public interface TeamMapper {
      * @param teamDTO instance of {@link TeamDTO}
      * @return instance of {@link Team}
      */
-    @Mapping(target = "name", source = "teamName")
     Team fromTeamCreateDto(TeamDTO teamDTO);
 }

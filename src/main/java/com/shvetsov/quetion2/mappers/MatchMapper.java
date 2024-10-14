@@ -17,9 +17,5 @@ public interface MatchMapper {
      * @param matchDTO instance of {@link MatchDTO}
      * @return instance of {@link Match}
      */
-    @Mapping(target = "dateMatch", source = "dateMatchDTO")
-    @Mapping(target = "season", source = "seasonDTO")
-    @Mapping(target = "numberPointsHomeTeam", source = "numberPointsHomeTeamDTO")
-    @Mapping(target = "numberPointsAwayTeam", source = "numberPointsAwayTeamDTO")
     Match fromMatchCreateDto(MatchDTO matchDTO);
 }

@@ -41,14 +41,14 @@ public class MatchService {
      */
     public Map<String, StatisticsTeam> getStandings(Date date) {
         Map<String, StatisticsTeam> stats = new HashMap<>();
-        List<Match> matches = matchRepository.findByDateMatch(date);
+        List<Match> matches = matchRepository.findAllByDateMatch(date);
 
         for (Match match : matches) {
             String awayTeam = match.getAwayTeam().getName();
             String homeTeam = match.getHomeTeam().getName();
 
-            stats.putIfAbsent(awayTeam, new StatisticsTeam());
-            stats.putIfAbsent(homeTeam, new StatisticsTeam());
+            stats.putIfAbsent(awayTeam, new StatisticsTeam(0, 0));
+            stats.putIfAbsent(homeTeam, new StatisticsTeam(0, 0));
 
             stats.get(homeTeam).incrementMatches();
             stats.get(awayTeam).incrementMatches();
@@ -72,21 +72,18 @@ public class MatchService {
      * @return созданный объект Match
      */
     public Match createMatch(MatchDTO matchDTO) throws NotFoundTeam {
-        // Поиск home и away команд по имени
-        Team homeTeam = teamRepository.findByName(matchDTO.getNameHomeTeamDTO())
+        Team homeTeam = teamRepository.findByName(matchDTO.getNameHomeTeam())
                 .orElseThrow(() -> new NotFoundTeam("not found home team"));
-        Team awayTeam = teamRepository.findByName(matchDTO.getNameAwayTeamDTO())
+        Team awayTeam = teamRepository.findByName(matchDTO.getNameAwayTeam())
                 .orElseThrow(() -> new NotFoundTeam("not found away team"));
 
-        // Маппинг DTO в Match
         Match match = matchMapper.fromMatchCreateDto(matchDTO);
 
-        // Установка найденных команд
         match.setHomeTeam(homeTeam);
         match.setAwayTeam(awayTeam);
 
         matchRepository.save(match);
-        // Возвращаем объект Match
+
         return match;
     }
 }
