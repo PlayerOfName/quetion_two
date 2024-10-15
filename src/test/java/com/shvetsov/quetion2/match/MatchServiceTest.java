@@ -39,11 +39,8 @@ public class MatchServiceTest {
 
     @Test
     public void testCreateMatch() throws NotFoundTeam, ParseException {
-        Team homeTeam = new Team("HomeTeam");
-        Team awayTeam = new Team("AwayTeam");
-
-        when(teamRepository.findByName("HomeTeam")).thenReturn(Optional.of(homeTeam));
-        when(teamRepository.findByName("AwayTeam")).thenReturn(Optional.of(awayTeam));
+        teamRepository.save(new Team(1L, "HomeTeam"));
+        teamRepository.save(new Team(2L, "AwayTeam"));
 
         MatchDTO matchDTO = new MatchDTO();
         matchDTO.setNameHomeTeam("HomeTeam");
@@ -58,8 +55,9 @@ public class MatchServiceTest {
         assertNotNull(createdMatch);
         assertEquals("HomeTeam", createdMatch.getHomeTeam().getName());
         assertEquals("AwayTeam", createdMatch.getAwayTeam().getName());
-        verify(teamRepository, times(1)).findByName("HomeTeam");
-        verify(teamRepository, times(1)).findByName("AwayTeam");
+        assertEquals("2024", createdMatch.getSeason());
+        assertEquals(3, createdMatch.getNumberPointsHomeTeam());
+        assertEquals(1, createdMatch.getNumberPointsAwayTeam());
     }
 
     @Test
