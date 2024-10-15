@@ -6,7 +6,6 @@ import com.shvetsov.quetion2.models.Match;
 import com.shvetsov.quetion2.models.Team;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.ParseException;
@@ -15,12 +14,20 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * The type Match mapper test.
+ */
 @SpringBootTest
 public class MatchMapperTest {
 
     @Autowired
     private MatchMapper matchMapper;
 
+    /**
+     * Test from match create dto.
+     *
+     * @throws ParseException the parse exception
+     */
     @Test
     public void testFromMatchCreateDto() throws ParseException {
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2023-02-01");

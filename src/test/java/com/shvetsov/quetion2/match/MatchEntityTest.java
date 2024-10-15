@@ -7,19 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * The type Match entity test.
+ */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class MatchEntityTest {
 
+    /**
+     * JPA TestEntityManager.
+     */
     @Autowired
     private TestEntityManager entityManager;
 
+    /**
+     * Test save and find match.
+     */
     @Test
     public void testSaveAndFindMatch() {
         Team homeTeam = new Team("HomeTeam");

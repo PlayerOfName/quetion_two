@@ -11,8 +11,8 @@ import com.shvetsov.quetion2.services.MatchService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,10 +20,10 @@ import java.util.*;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
 
+/**
+ * The type Match service test.
+ */
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class MatchServiceTest {
@@ -37,6 +37,12 @@ public class MatchServiceTest {
     @Autowired
     private MatchService matchService;
 
+    /**
+     * Test create match.
+     *
+     * @throws NotFoundTeam   the not found team
+     * @throws ParseException the parse exception
+     */
     @Test
     public void testCreateMatch() throws NotFoundTeam, ParseException {
         teamRepository.save(new Team(1L, "HomeTeam"));
@@ -60,6 +66,11 @@ public class MatchServiceTest {
         assertEquals(1, createdMatch.getNumberPointsAwayTeam());
     }
 
+    /**
+     * Test get standings.
+     *
+     * @throws ParseException the parse exception
+     */
     @Test
     public void testGetStandings() throws ParseException { // TODO: testGetStandings
         Team homeTeam = teamRepository.save(new Team(1L, "TestTeam"));
@@ -94,7 +105,6 @@ public class MatchServiceTest {
         expectedStats.put("TestTeam3", new StatisticsTeam(1, 3));
         expectedStats.put("TestTeam4", new StatisticsTeam(1, 0));
 
-
         Map<String, StatisticsTeam> actualStats = matchService.getStandings(new SimpleDateFormat("yyyy-MM-dd").parse("2022-01-01"));
 
         assertNotNull(actualStats);
@@ -107,6 +117,5 @@ public class MatchServiceTest {
             assertEquals(expectedStats.get(teamName).getPoints(), actualStats.get(teamName).getPoints());
         }
     }
-
 }
 

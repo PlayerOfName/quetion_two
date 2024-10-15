@@ -16,6 +16,9 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Match repository test.
+ */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class MatchRepositoryTest {
@@ -26,6 +29,11 @@ public class MatchRepositoryTest {
     @Autowired
     private TeamRepository teamRepository;
 
+    /**
+     * Test find all by date match.
+     *
+     * @throws ParseException the parse exception
+     */
     @Test
     public void testFindAllByDateMatch() throws ParseException {
         Team homeTeam = new Team(1L, "TestTeam");
@@ -54,6 +62,11 @@ public class MatchRepositoryTest {
         assertEquals(2, foundMatch.get().getNumberPointsAwayTeam());
     }
 
+    /**
+     * Test find all by date match null.
+     *
+     * @throws ParseException the parse exception
+     */
     @Test
     public void testFindAllByDateMatchNull() throws ParseException {
         Team homeTeam = teamRepository.save(new Team(1L, "TestTeam"));
@@ -99,7 +112,5 @@ public class MatchRepositoryTest {
         assertEquals("TestSeason2", foundMatch.getLast().getSeason());
         assertEquals(12, foundMatch.getLast().getNumberPointsHomeTeam());
         assertEquals(22, foundMatch.getLast().getNumberPointsAwayTeam());
-
-
     }
 }
