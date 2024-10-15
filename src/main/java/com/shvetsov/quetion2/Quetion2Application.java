@@ -12,6 +12,12 @@ import java.util.Date;
 
 @SpringBootApplication
 public class Quetion2Application {
+    /**
+    @author Shvetsov
+    @project Quetion2
+    @version 1.0
+    @since 1.0
+    **/
 
     public static void main(String[] args) {
         SpringApplication.run(Quetion2Application.class, args);

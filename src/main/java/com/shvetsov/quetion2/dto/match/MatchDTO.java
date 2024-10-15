@@ -1,7 +1,5 @@
 package com.shvetsov.quetion2.dto.match;
 
-import com.shvetsov.quetion2.models.Team;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,25 +14,25 @@ public class MatchDTO {
     /**
      * field awayTeamDTO
      */
-    private String nameHomeTeamDTO;
+    private String nameHomeTeam;
     /**
      * field homeTeamDTO
      */
-    private String nameAwayTeamDTO;
+    private String nameAwayTeam;
     /**
      * field dateMatchDTO
      */
-    private Date dateMatchDTO;
+    private Date dateMatch;
     /**
      * field seasonDTO
      */
-    private String seasonDTO;
+    private String season;
     /**
      * field numberPointsHomeTeamDTO
      */
-    private Integer numberPointsHomeTeamDTO;
+    private Integer numberPointsHomeTeam;
     /**
      * field numberPointsAwayTeamDTO
      */
-    private Integer numberPointsAwayTeamDTO;
+    private Integer numberPointsAwayTeam;
 }
