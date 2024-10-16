@@ -33,7 +33,7 @@ createMatch - создаёт матч исходя из переданных п�
 
 1. Клонируйте репозиторий:
    ```sh
-   [git clone https://github.com/your-username/your-project.git](https://github.com/PlayerOfName/quetion_two.git)
+   [[git clone https://github.com/your-username/your-project.git](https://github.com/PlayerOfName/quetion_two.git)](https://github.com/PlayerOfName/quetion_two.git)
    ```
 
 2. Установите Gradle (если еще не установлен):
