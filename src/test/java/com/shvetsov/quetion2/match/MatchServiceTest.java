@@ -112,7 +112,6 @@ public class MatchServiceTest {
         assertEquals(expectedStats.size(), actualStats.size());
 
         for (String teamName : expectedStats.keySet()) {
-            System.out.println("+");
             assertTrue(actualStats.containsKey(teamName));
             assertEquals(expectedStats.get(teamName).getMatches(), actualStats.get(teamName).getMatches());
             assertEquals(expectedStats.get(teamName).getPoints(), actualStats.get(teamName).getPoints());
