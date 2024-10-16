@@ -34,6 +34,8 @@ public class TeamRepositoryTest {
         Optional<Team> foundTeam = teamRepository.findById(team.getId());
         assertTrue(foundTeam.isPresent());
         assertEquals("TestTeam", foundTeam.get().getName());
+
+        teamRepository.delete(team);
     }
 
     /**
@@ -48,6 +50,8 @@ public class TeamRepositoryTest {
         Optional<Team> foundTeam = teamRepository.findByName("TestTeam");
         assertTrue(foundTeam.isPresent());
         assertEquals("TestTeam", foundTeam.get().getName());
+
+        teamRepository.delete(team);
     }
 }
 

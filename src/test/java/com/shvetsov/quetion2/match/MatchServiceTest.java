@@ -8,10 +8,10 @@ import com.shvetsov.quetion2.models.Team;
 import com.shvetsov.quetion2.repository.MatchRepository;
 import com.shvetsov.quetion2.repository.TeamRepository;
 import com.shvetsov.quetion2.services.MatchService;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.ParseException;
@@ -25,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * The type Match service test.
  */
 @SpringBootTest
+@Transactional
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class MatchServiceTest {
 
