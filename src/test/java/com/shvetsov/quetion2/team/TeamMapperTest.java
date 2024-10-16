@@ -9,12 +9,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * The type Team mapper test.
+ */
 @SpringBootTest
 public class TeamMapperTest {
 
     @Autowired
     private TeamMapper teamMapper;
 
+    /**
+     * Test from team create dto.
+     */
     @Test
     public void testFromTeamCreateDto() {
         TeamDTO teamDTO = new TeamDTO();

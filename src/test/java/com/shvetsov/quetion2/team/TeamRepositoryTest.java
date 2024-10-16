@@ -12,6 +12,9 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * The type Team repository test.
+ */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class TeamRepositoryTest {
@@ -19,6 +22,9 @@ public class TeamRepositoryTest {
     @Autowired
     private TeamRepository teamRepository;
 
+    /**
+     * Test find all by id.
+     */
     @Test
     public void testFindAllById() {
         Team team = new Team();
@@ -28,8 +34,13 @@ public class TeamRepositoryTest {
         Optional<Team> foundTeam = teamRepository.findById(team.getId());
         assertTrue(foundTeam.isPresent());
         assertEquals("TestTeam", foundTeam.get().getName());
+
+        teamRepository.delete(team);
     }
 
+    /**
+     * Test find by name.
+     */
     @Test
     public void testFindByName() {
         Team team = new Team();
@@ -39,6 +50,8 @@ public class TeamRepositoryTest {
         Optional<Team> foundTeam = teamRepository.findByName("TestTeam");
         assertTrue(foundTeam.isPresent());
         assertEquals("TestTeam", foundTeam.get().getName());
+
+        teamRepository.delete(team);
     }
 }
 

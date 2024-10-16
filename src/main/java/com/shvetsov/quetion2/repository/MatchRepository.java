@@ -1,7 +1,8 @@
 package com.shvetsov.quetion2.repository;
 
 import com.shvetsov.quetion2.models.Match;
-import com.shvetsov.quetion2.models.Team;
+import io.micrometer.common.lang.NonNullApi;
+import lombok.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,14 +15,6 @@ import java.util.Optional;
  */
 @Repository
 public interface MatchRepository extends JpaRepository<Match, Long> {
-    /**
-     * Method for getting the matches by id
-     *
-     * @param id the date of the match
-     * @return a list of matches
-     */
-    Optional<Match> findById(Long id);
-
     /**
      * Method for getting the matches by date
      * @param date

@@ -10,6 +10,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * The type Team entity test.
+ */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class TeamEntityTest {
@@ -17,6 +20,9 @@ public class TeamEntityTest {
     @Autowired
     private TestEntityManager entityManager;
 
+    /**
+     * Test save and find team.
+     */
     @Test
     public void testSaveAndFindTeam() {
         Team team = new Team("Team");

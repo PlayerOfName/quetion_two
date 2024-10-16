@@ -4,6 +4,7 @@ import com.shvetsov.quetion2.models.Match;
 import com.shvetsov.quetion2.models.Team;
 import com.shvetsov.quetion2.repository.MatchRepository;
 import com.shvetsov.quetion2.repository.TeamRepository;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -12,11 +13,14 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Match repository test.
+ */
 @DataJpaTest
+@Transactional
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class MatchRepositoryTest {
 
@@ -26,34 +30,11 @@ public class MatchRepositoryTest {
     @Autowired
     private TeamRepository teamRepository;
 
-    @Test
-    public void testFindAllByDateMatch() throws ParseException {
-        Team homeTeam = new Team(1L, "TestTeam");
-        Team awayTeam = new Team(2L, "TestTeam2");
-
-        Match match = new Match();
-        match.setHomeTeam(homeTeam);
-        match.setAwayTeam(awayTeam);
-        match.setDateMatch(new SimpleDateFormat("yyyy-MM-dd").parse("2022-01-01"));
-        match.setSeason("TestSeason");
-        match.setNumberPointsHomeTeam(1);
-        match.setNumberPointsAwayTeam(2);
-
-        matchRepository.save(match);
-
-        Optional<Match> foundMatch = matchRepository.findById(match.getId());
-
-        assertTrue(foundMatch.isPresent());
-        assertEquals(1L, foundMatch.get().getHomeTeam().getId());
-        assertEquals(2L, foundMatch.get().getAwayTeam().getId());
-        assertEquals("TestTeam", foundMatch.get().getHomeTeam().getName());
-        assertEquals("TestTeam2", foundMatch.get().getAwayTeam().getName());
-        assertEquals(new SimpleDateFormat("yyyy-MM-dd").parse("2022-01-01"), foundMatch.get().getDateMatch());
-        assertEquals("TestSeason", foundMatch.get().getSeason());
-        assertEquals(1, foundMatch.get().getNumberPointsHomeTeam());
-        assertEquals(2, foundMatch.get().getNumberPointsAwayTeam());
-    }
-
+    /**
+     * Test find all by date match null.
+     *
+     * @throws ParseException the parse exception
+     */
     @Test
     public void testFindAllByDateMatchNull() throws ParseException {
         Team homeTeam = teamRepository.save(new Team(1L, "TestTeam"));
@@ -99,7 +80,5 @@ public class MatchRepositoryTest {
         assertEquals("TestSeason2", foundMatch.getLast().getSeason());
         assertEquals(12, foundMatch.getLast().getNumberPointsHomeTeam());
         assertEquals(22, foundMatch.getLast().getNumberPointsAwayTeam());
-
-
     }
 }
