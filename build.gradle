@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.4'
     id 'io.spring.dependency-management' version '1.1.6'
+    id 'org.flywaydb.flyway' version '10.20.0'
 }
 
 group = 'com.shvetsov'
@@ -24,7 +25,8 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'org.flywaydb', name: 'flyway-core', version: '10.19.0'
+    implementation group: 'org.flywaydb', name: 'flyway-core', version: '10.20.0'
+    runtimeOnly group: 'org.flywaydb', name: 'flyway-database-postgresql', version: '10.20.0'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
     annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
     implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.6.2'
@@ -37,8 +39,19 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    runtimeOnly 'org.postgresql:postgresql'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.6.0'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+flyway {
+    driver = 'org.postgresql.Driver'
+    url = 'jdbc:postgresql://localhost:5432/tournament_table'
+    user = 'postgres'
+    password = '1234'
+    schemas = ['public']
+    locations = ['classpath:db/migration']
+    baselineOnMigrate = true
+    cleanDisabled = false
 }
 
 tasks.named('test') {
